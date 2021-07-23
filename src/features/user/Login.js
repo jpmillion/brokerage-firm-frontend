@@ -4,6 +4,8 @@ import { asyncLogIn } from './userSlice';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../../App.css';
+import LoginWithGoogle from './LoginWithGoogle';
+import LogoutGoogle from './LogoutGoogle';
 
 
 function Login() {
@@ -35,6 +37,9 @@ function Login() {
                   Submit
                 </Button>
               </Form>
+              <h2>Or</h2>
+              <LoginWithGoogle />
+              <LogoutGoogle />
             </div>
         </React.Fragment>
     )
