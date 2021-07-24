@@ -1,16 +1,17 @@
 const endPoint = 'http://localhost:3001/api/v1/';
 
 export function logInUser(data) {
-    const { email, password } = { ...data }
+    const { email, password, id_token, route } = { ...data }
     return (
-        fetch(`${endPoint}sessions`, {
+        fetch(`${endPoint}${route}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 email,
-                password
+                password,
+                id_token
             })
         })
     )
