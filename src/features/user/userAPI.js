@@ -23,8 +23,6 @@ export function refreshTokenSetup(res) {
     async function refreshToken() {
         const newAuthResponse = await res.reloadAuthResponse();
         refreshTiming = (newAuthResponse.expires_in || 3600 - 5 * 60) * 1000;
-        console.log('new auth resp: ', newAuthResponse);
-        console.log('new auth toke: ', newAuthResponse.id_token);
         setTimeout(refreshToken, refreshTiming);
     }
     setTimeout(refreshToken, refreshTiming);
