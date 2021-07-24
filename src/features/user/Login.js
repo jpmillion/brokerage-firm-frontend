@@ -16,7 +16,7 @@ function Login() {
   
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(asyncLogIn({email, password}));
+    dispatch(asyncLogIn({email, password, route: 'sessions'}));
     setEmail('');
     setPassword('');
   }
