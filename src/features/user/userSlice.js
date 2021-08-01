@@ -7,9 +7,11 @@ const initialState = {
 
 export const asyncLogIn = createAsyncThunk(
     'user/logInUser',
-    async (data) => {
+    async data => {
         const resp = await logInUser(data);
-        return resp.json();
+        const json = await resp.json();
+        sessionStorage.token = json.token;
+        return json;
     }
 );
 
