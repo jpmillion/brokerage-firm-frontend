@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { logInUser } from './userAPI';
+import { authenticate, logInUser } from './userAPI';
 
 const initialState = {
     investor: {}
@@ -15,6 +15,13 @@ export const asyncLogIn = createAsyncThunk(
     }
 );
 
+export const asyncAuthenticate = createAsyncThunk(
+    'user/authenticate',
+    async () => {
+        const resp = await authenticate();
+        return resp.json();
+    }
+)
 
 const userSlice = createSlice({
     name: 'user',
@@ -22,6 +29,10 @@ const userSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(asyncLogIn.fulfilled, (state, action) => {
+                state.investor = action.payload.user.data.attributes
+            })
+
+            .addCase(asyncAuthenticate.fulfilled, (state, action) => {
                 state.investor = action.payload.user.data.attributes
             })
     }
